@@ -17,7 +17,7 @@ func (mg *Subscription) GetTerraformResourceType() string {
 
 // GetConnectionDetailsMapping for this Subscription
 func (tr *Subscription) GetConnectionDetailsMapping() map[string]string {
-	return map[string]string{"conninfo": "spec.forProvider.conninfoSecretRef"}
+	return map[string]string{"conninfo": "conninfoSecretRef"}
 }
 
 // GetObservation of this Subscription

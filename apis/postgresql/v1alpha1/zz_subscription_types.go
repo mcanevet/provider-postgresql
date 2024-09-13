@@ -11,6 +11,9 @@ import (
 
 type SubscriptionInitParameters struct {
 
+	// The connection string to the publisher. It should follow the keyword/value format (https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING)
+	ConninfoSecretRef v1.SecretKeySelector `json:"conninfoSecretRef" tf:"-"`
+
 	// Specifies whether the command should create the replication slot on the publisher
 	CreateSlot *bool `json:"createSlot,omitempty" tf:"create_slot,omitempty"`
 

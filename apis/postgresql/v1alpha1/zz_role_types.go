@@ -65,6 +65,11 @@ type RoleInitParameters struct {
 	// The name of the role
 	Name *string `json:"name,omitempty" tf:"name,omitempty"`
 
+	// Sets the role's password. A password is only of use
+	// for roles having the login attribute set to true.
+	// Sets the role's password
+	PasswordSecretRef *v1.SecretKeySelector `json:"passwordSecretRef,omitempty" tf:"-"`
+
 	// Defines whether a role is allowed to initiate
 	// streaming replication or put the system in and out of backup mode.  Default
 	// value is false

@@ -17,7 +17,7 @@ func (mg *Role) GetTerraformResourceType() string {
 
 // GetConnectionDetailsMapping for this Role
 func (tr *Role) GetConnectionDetailsMapping() map[string]string {
-	return map[string]string{"password": "spec.forProvider.passwordSecretRef"}
+	return map[string]string{"password": "passwordSecretRef"}
 }
 
 // GetObservation of this Role
