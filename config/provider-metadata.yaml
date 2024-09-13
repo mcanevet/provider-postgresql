@@ -1,62 +1,5 @@
 name: cyrilgdn/postgresql
 resources:
-    PostgreSQL:
-        subCategory: ""
-        description: A provider for PostgreSQL Server.
-        name: PostgreSQL
-        title: PostgreSQL
-        argumentDocs:
-            GOOGLE_APPLICATION_CREDENTIALS: has sufficient permissions to impersonate the provided service account. Learn more from roles for service account authentication.
-            aws_rds_iam_auth: |-
-                - (Optional) If set to true, call the AWS RDS API to grab a temporary password, using AWS Credentials
-                from the environment (or the given profile, see aws_rds_iam_profile)
-            aws_rds_iam_profile: '- (Optional) The AWS IAM Profile to use while using AWS RDS IAM Auth.'
-            aws_rds_iam_region: '- (Optional) The AWS region to use while using AWS RDS IAM Auth.'
-            awspostgres: ': Use GoCloud for AWS'
-            azure_identity_auth: '- (Optional) If set to true, call the Azure OAuth token endpoint for temporary token'
-            azure_tenant_id: '- (Optional) (Required if azure_identity_auth is true) Azure tenant ID read more'
-            cert: '- (Required) - The SSL client certificate file path. The file must contain PEM encoded data.'
-            clientcert: '- (Optional) - Configure the SSL client certificate.'
-            connect_timeout: |-
-                - (Optional) Maximum wait for connection, in seconds. The
-                default is 180s.  Zero or not specified means wait indefinitely.
-            database: '- (Optional) Database to connect to. The default is postgres.'
-            database_username: '- (Optional) Username of the user in the database if different than connection username (See user name maps).'
-            expected_version: |-
-                - (Optional) Specify a hint to Terraform regarding the
-                expected version that the provider will be talking with.  This is a required
-                hint in order for Terraform to talk with an ancient version of PostgreSQL.
-                This parameter is expected to be a PostgreSQL
-                Version or current.  Once a
-                connection has been established, Terraform will fingerprint the actual
-                version.  Default: 9.0.0.
-            gcppostgres: ': Use GoCloud for GCP'
-            host: '- (Required) The address for the postgresql server connection, see GoCloud for specific format.'
-            key: '- (Required) - The SSL client certificate private key file path. The file must contain PEM encoded data.'
-            libpq(3): SSL guide
-            max_connections: |-
-                - (Optional) Set the maximum number of open connections to
-                the database. The default is 20.  Zero means unlimited open connections.
-            password: '- (Optional) Password for the server connection.'
-            port: '- (Optional) The port for the postgresql server connection. The default is 5432.'
-            postgres: ': Default value, use lib/pq'
-            scheme: '- (Optional) The driver to use. Valid values are:'
-            sslinline: '- (Optional) - If set to true, arguments accept inline ssl cert and key rather than a filename. Defaults to false.'
-            sslmode: |-
-                - (Optional) Set the priority for an SSL connection to the server.
-                Valid values for sslmode are (note: prefer is not supported by Go's
-                lib/pq)):
-            sslrootcert: '- (Optional) - The SSL server root certificate file path. The file must contain PEM encoded data.'
-            superuser: |-
-                - (Optional) Should be set to false if the user to connect is not a PostgreSQL superuser (as is the case in AWS RDS or GCP SQL).
-                In this case, some features might be disabled (e.g.: Refreshing state password from database).
-            username: '- (Required) Username for the server connection.'
-        importStatements:
-            - |-
-              export PGHOST=localhost
-              export PGPORT=5432
-              export PGUSER=postgres
-              export PGPASSWORD=postgres
     postgresql_database:
         subCategory: ""
         description: Creates and manages a database on a PostgreSQL server.
@@ -570,37 +513,6 @@ resources:
             policy.usage: '- (Optional) Should the specified ROLE have USAGE privileges to the specified SCHEMA.'
             policy.usage_with_grant: '- (Optional) Should the specified ROLE have USAGE privileges to the specified SCHEMA and the ability to GRANT the USAGE privilege to other ROLEs.'
         importStatements: []
-    postgresql_schemas:
-        subCategory: ""
-        description: Retrieves a list of schema names from a PostgreSQL database.
-        name: postgresql_schemas
-        title: postgresql_schemas
-        argumentDocs:
-            database: '- (Required) The PostgreSQL database which will be queried for schema names.'
-            include_system_schemas: '- (Optional) Determines whether to include system schemas (pg_ prefix and information_schema). ''public'' will always be included. Defaults to false.'
-            like_all_patterns: '- (Optional) List of expressions which will be pattern matched in the query using the PostgreSQL LIKE ALL operators.'
-            like_any_patterns: '- (Optional) List of expressions which will be pattern matched in the query using the PostgreSQL LIKE ANY operators.'
-            not_like_all_patterns: '- (Optional) List of expressions which will be pattern matched in the query using the PostgreSQL NOT LIKE ALL operators.'
-            regex_pattern: '- (Optional) Expression which will be pattern matched in the query using the PostgreSQL ~ (regular expression match) operator.'
-            schemas: '- A list of full names of found schemas.'
-        importStatements: []
-    postgresql_sequences:
-        subCategory: ""
-        description: Retrieves a list of sequence names from a PostgreSQL database.
-        name: postgresql_sequences
-        title: postgresql_sequences
-        argumentDocs:
-            database: '- (Required) The PostgreSQL database which will be queried for sequence names.'
-            like_all_patterns: '- (Optional) List of expressions which will be pattern matched against sequence names in the query using the PostgreSQL LIKE ALL operators.'
-            like_any_patterns: '- (Optional) List of expressions which will be pattern matched against sequence names in the query using the PostgreSQL LIKE ANY operators.'
-            not_like_all_patterns: '- (Optional) List of expressions which will be pattern matched against sequence names in the query using the PostgreSQL NOT LIKE ALL operators.'
-            regex_pattern: '- (Optional) Expression which will be pattern matched against sequence names in the query using the PostgreSQL ~ (regular expression match) operator.'
-            schemas: '- (Optional) List of PostgreSQL schema(s) which will be queried for sequence names. Queries all schemas in the database by default.'
-            sequence.data_type: '- The sequence''s data type as defined in information_schema.sequences.'
-            sequence.object_name: '- The sequence name.'
-            sequence.schema_name: '- The parent schema.'
-            sequences: '- A list of PostgreSQL sequences retrieved by this data source. Each sequence consists of the fields documented below.'
-        importStatements: []
     postgresql_server:
         subCategory: ""
         description: Creates and manages a foreign server on a PostgreSQL server.
@@ -669,24 +581,6 @@ resources:
             name: '- (Required) The name of the publication.'
             publications: '- (Required) Names of the publications on the publisher to subscribe to'
             slot_name: '- (Optional) Name of the replication slot to use. The default behavior is to use the name of the subscription for the slot name'
-        importStatements: []
-    postgresql_tables:
-        subCategory: ""
-        description: Retrieves a list of table names from a PostgreSQL database.
-        name: postgresql_tables
-        title: postgresql_tables
-        argumentDocs:
-            database: '- (Required) The PostgreSQL database which will be queried for table names.'
-            like_all_patterns: '- (Optional) List of expressions which will be pattern matched against table names in the query using the PostgreSQL LIKE ALL operators.'
-            like_any_patterns: '- (Optional) List of expressions which will be pattern matched against table names in the query using the PostgreSQL LIKE ANY operators.'
-            not_like_all_patterns: '- (Optional) List of expressions which will be pattern matched against table names in the query using the PostgreSQL NOT LIKE ALL operators.'
-            regex_pattern: '- (Optional) Expression which will be pattern matched against table names in the query using the PostgreSQL ~ (regular expression match) operator.'
-            schemas: '- (Optional) List of PostgreSQL schema(s) which will be queried for table names. Queries all schemas in the database by default.'
-            table_types: '- (Optional) List of PostgreSQL table types which will be queried for table names. Includes all table types by default (including views and temp tables). Use ''BASE TABLE'' for normal tables only.'
-            tables: '- A list of PostgreSQL tables retrieved by this data source. Each table consists of the fields documented below.'
-            tables.object_name: '- The table name.'
-            tables.schema_name: '- The parent schema.'
-            tables.table_type: '- The table type as defined in information_schema.tables.'
         importStatements: []
     postgresql_user_mapping:
         subCategory: ""
