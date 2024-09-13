@@ -149,6 +149,11 @@ func (in *DatabaseInitParameters) DeepCopyInto(out *DatabaseInitParameters) {
 		*out = new(bool)
 		**out = **in
 	}
+	if in.AlterObjectOwnership != nil {
+		in, out := &in.AlterObjectOwnership, &out.AlterObjectOwnership
+		*out = new(bool)
+		**out = **in
+	}
 	if in.ConnectionLimit != nil {
 		in, out := &in.ConnectionLimit, &out.ConnectionLimit
 		*out = new(float64)
@@ -246,6 +251,11 @@ func (in *DatabaseObservation) DeepCopyInto(out *DatabaseObservation) {
 		*out = new(bool)
 		**out = **in
 	}
+	if in.AlterObjectOwnership != nil {
+		in, out := &in.AlterObjectOwnership, &out.AlterObjectOwnership
+		*out = new(bool)
+		**out = **in
+	}
 	if in.ConnectionLimit != nil {
 		in, out := &in.ConnectionLimit, &out.ConnectionLimit
 		*out = new(float64)
@@ -313,6 +323,11 @@ func (in *DatabaseParameters) DeepCopyInto(out *DatabaseParameters) {
 	*out = *in
 	if in.AllowConnections != nil {
 		in, out := &in.AllowConnections, &out.AllowConnections
+		*out = new(bool)
+		**out = **in
+	}
+	if in.AlterObjectOwnership != nil {
+		in, out := &in.AlterObjectOwnership, &out.AlterObjectOwnership
 		*out = new(bool)
 		**out = **in
 	}

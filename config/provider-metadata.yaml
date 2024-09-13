@@ -6,6 +6,7 @@ resources:
         name: PostgreSQL
         title: PostgreSQL
         argumentDocs:
+            GOOGLE_APPLICATION_CREDENTIALS: has sufficient permissions to impersonate the provided service account. Learn more from roles for service account authentication.
             aws_rds_iam_auth: |-
                 - (Optional) If set to true, call the AWS RDS API to grab a temporary password, using AWS Credentials
                 from the environment (or the given profile, see aws_rds_iam_profile)
@@ -66,6 +67,7 @@ resources:
               manifest: |-
                 {
                   "allow_connections": true,
+                  "alter_object_ownership": true,
                   "connection_limit": -1,
                   "lc_collate": "C",
                   "name": "my_db",
@@ -83,6 +85,14 @@ resources:
                 - (Optional) If false then no one can connect to this
                 database. The default is true, allowing connections (except as restricted by
                 other mechanisms, such as GRANT or REVOKE CONNECT).
+            alter_object_ownership: |-
+                - (Optional) If true, the change of the database
+                owner will also include a reassignment of the ownership of preexisting
+                objects like tables or sequences from the previous owner to the new one.
+                If set to false (the default), then the previous database owner will still
+                hold the ownership of the objects in that database. To alter existing objects in
+                the database, you must be a direct or indirect member of the specified role, or
+                the username in the provider must be superuser.
             connection_limit: |-
                 - (Optional) How many concurrent connections can be
                 established to this database. -1 (the default) means no limit.

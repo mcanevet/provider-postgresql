@@ -17,6 +17,16 @@ type DatabaseInitParameters struct {
 	// If false then no one can connect to this database
 	AllowConnections *bool `json:"allowConnections,omitempty" tf:"allow_connections,omitempty"`
 
+	// If true, the change of the database
+	// owner will also include a reassignment of the ownership of preexisting
+	// objects like tables or sequences from the previous owner to the new one.
+	// If set to false (the default), then the previous database owner will still
+	// hold the ownership of the objects in that database. To alter existing objects in
+	// the database, you must be a direct or indirect member of the specified role, or
+	// the username in the provider must be superuser.
+	// If true, the owner of already existing objects will change if the owner changes
+	AlterObjectOwnership *bool `json:"alterObjectOwnership,omitempty" tf:"alter_object_ownership,omitempty"`
+
 	// How many concurrent connections can be
 	// established to this database. -1 (the default) means no limit.
 	// How many concurrent connections can be made to this database
@@ -88,6 +98,16 @@ type DatabaseObservation struct {
 	// other mechanisms, such as GRANT or REVOKE CONNECT).
 	// If false then no one can connect to this database
 	AllowConnections *bool `json:"allowConnections,omitempty" tf:"allow_connections,omitempty"`
+
+	// If true, the change of the database
+	// owner will also include a reassignment of the ownership of preexisting
+	// objects like tables or sequences from the previous owner to the new one.
+	// If set to false (the default), then the previous database owner will still
+	// hold the ownership of the objects in that database. To alter existing objects in
+	// the database, you must be a direct or indirect member of the specified role, or
+	// the username in the provider must be superuser.
+	// If true, the owner of already existing objects will change if the owner changes
+	AlterObjectOwnership *bool `json:"alterObjectOwnership,omitempty" tf:"alter_object_ownership,omitempty"`
 
 	// How many concurrent connections can be
 	// established to this database. -1 (the default) means no limit.
@@ -163,6 +183,17 @@ type DatabaseParameters struct {
 	// If false then no one can connect to this database
 	// +kubebuilder:validation:Optional
 	AllowConnections *bool `json:"allowConnections,omitempty" tf:"allow_connections,omitempty"`
+
+	// If true, the change of the database
+	// owner will also include a reassignment of the ownership of preexisting
+	// objects like tables or sequences from the previous owner to the new one.
+	// If set to false (the default), then the previous database owner will still
+	// hold the ownership of the objects in that database. To alter existing objects in
+	// the database, you must be a direct or indirect member of the specified role, or
+	// the username in the provider must be superuser.
+	// If true, the owner of already existing objects will change if the owner changes
+	// +kubebuilder:validation:Optional
+	AlterObjectOwnership *bool `json:"alterObjectOwnership,omitempty" tf:"alter_object_ownership,omitempty"`
 
 	// How many concurrent connections can be
 	// established to this database. -1 (the default) means no limit.

@@ -9,6 +9,7 @@ metadata:
 spec:
   forProvider:
     allowConnections: true
+    alterObjectOwnership: true
     connectionLimit: -1
     lcCollate: C
     name: my_db
